@@ -13,4 +13,4 @@ Run `npm i` to install dependencies
 
 Run `node app.js` to start the server
 
-Navigate to https://localhost:8085 in the browser to build your first pizza!
+Navigate to [localhost:8085](localhost:8085) in the browser to build your first pizza!

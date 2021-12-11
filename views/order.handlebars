@@ -1,5 +1,17 @@
 <form action="AddToCart">
-    <input type="select" >
-    
-    <input type="submit" value="Add to Cart"/>
+  <label for="size">Select Pizza Size:</label>
+  <select name="size" id="size">
+    <option value="small">Small</option>
+    <option value="medium">Medium</option>
+    <option value="large">Large</option>
+  </select>
+
+  <label for="sauce">Select Sauce:</label>
+  <select multiple name="sauce" id="sauce">
+    <option value="red">Red</option>
+    <option value="white">White</option>
+    <option value="noSauce">No Sauce</option>
+  </select>
+
+  <input type="submit" value="Add to Cart" />
 </form>
