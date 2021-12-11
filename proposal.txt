@@ -1,0 +1,17 @@
+Ryan Lalchand
+Final Project Proposal
+CSCI 4862
+
+I completed a gluten-free flour e-commerce site for e-commerce programming this previous spring, because I knew nobody else would do it. Thus, in a similar fashion, I aim to create a gluten-free pizza delivery site for this course – something I could never hope for in Youngstown, at least. I was also a delivery driver/cook at a pizza place for nearly 4 years, so I hope I can display some kind of prowess in the ordering process and pizza options. 
+
+The home page, ryans-GF-pizza.com, would prominently display our mission statement, some photos of our products, a GF certified logo, the ORDER NOW button, and a fake link to reviews on findmeglutenfree.com. 
+
+Upon selecting the order button, they would be brought to the pizza building page, where they can select type of dough, size of the pizza, and toppings. If they are satisfied, they would select the Add to Cart button. 
+
+This would forward to the Cart page, where they would be able to view their pizza and toppings and be able to increase or decrease the quantity of the pizza they built. In addition, they would be able to add a new pizza to their cart and it would push them back to the order page, which would have a link to the cart available in case they bail on their current pizza masterpiece. 
+
+Once they are satisfied with their order, on the cart page, they would select Place Order, forwarding to the delivery options page. There, they would be able to enter their delivery address, time of delivery, credit card information, and special instructions. 
+
+All text fields will be subject to regular expression input validation and in the Node app ensuring that values were actually entered at all. If not, the app would kick back the page to the user. 
+
+I will have to create middleware for Orders to house functions to call in order to store the order attributes and possibly perform the regular expression validation. Obviously without a database and authentication system, this object will have to store all pertinent information in the session for the user and their order. 
