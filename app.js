@@ -1,4 +1,5 @@
 //handles requests
+const { request } = require("express");
 var express = require("express");
 var app = express();
 
@@ -32,46 +33,50 @@ app.use(
   })
 );
 
-//loads Pizza instance
-const Pizza = require("./Pizza.js");
-
 // Front page when enter site
 app.get("/", (request, response) => {
   response.render("home.handlebars");
 });
+
+//loads Order instance
+const Order = require("./order.js");
 
 // Page to display the order
 app.get("/Order", (request, response, next) => {
   response.render("order.handlebars");
 });
 
-// Step 2: Parse input for order
-app.get("/PlaceOrder", (request, response, next) => {
+//initialize pizza order
+app.use("/AddToCart", Order.newPizza);
 
+app.get("/AddToCart", (request, response, next) => {
+  response.render("cart.handlebars", { pizzas: request.session.pizzas });
+});
+
+//initialize delivery order
+app.use("/AddToCart", Order.getDelivery);
+
+app.get("/Delivery", (request, response, next) => {
+  response.render("delivery.handlebars");
+});
+
+if (
+  request.session.errors.noName ||
+  request.session.errors.noAddress ||
+  request.session.errors.noCity ||
+  request.session.errors.noState ||
+  request.session.errors.noZip ||
+  request.session.errors.noPhone ||
+  request.session.errors.noCreditNum
+) {
+  response.render("order.handlebars", {
+    errors: request.session.errors,
+    deliveryInfo: request.session.deliveryInfo,
+  });
+  //if there are errors, render the order page with the errors
+} else {
   next();
-});
-
-// Step 3: Check guess
-app.use("/MakeGuess", Game.checkGuess);
-
-// Step 4: Determine if game is over or not
-app.get("/MakeGuess", (request, response, next) => {
-  //console.log(request.guess, request.session.correct);
-
-  //if guess is correct, game over
-  //if not, send to next guess
-
-  //YES I WAS TRYING TO EVALUATE GAME.ISCORRECT THE WHOLE TIME
-  if (request.session.isCorrect) {
-    response.render("GameOver.handlebars", {
-      guesses: request.session.guesses,
-    });
-  } else {
-    response.render("NextGuess.handlebars", {
-      tooHigh: request.session.tooHigh,
-    });
-  }
-});
+}
 
 // Default handler if request URL does not match the above
 app.use((request, response) => {
