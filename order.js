@@ -49,25 +49,25 @@ module.exports = {
     request.session.deliveryInfo = deliveryInfo;
 
     if (deliveryInfo.name == "") {
-      request.session.errors.noName = true;
+      request.session.errors_array.noName = true;
     }
     if (deliveryInfo.address == "") {
-      request.session.errors.noAddress = true;
+      request.session.errors_array.noAddress = true;
     }
     if (deliveryInfo.city == "") {
-      request.session.errors.noCity = true;
+      request.session.errors_array.noCity = true;
     }
     if (deliveryInfo.state == "") {
-      request.session.errors.noState = true;
+      request.session.errors_array.noState = true;
     }
     if (deliveryInfo.zip == "") {
-      request.session.errors.noZip = true;
+      request.session.errors_array.noZip = true;
     }
     if (deliveryInfo.phone == "") {
-      request.session.errors.noPhone = true;
+      request.session.errors_array.noPhone = true;
     }
     if (deliveryInfo.creditNum == "") {
-      request.session.errors.noCreditNum = true;
+      request.session.errors_array.noCreditNum = true;
     }
     next();
   },

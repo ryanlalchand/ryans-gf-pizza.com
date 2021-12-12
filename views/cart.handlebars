@@ -1,3 +1,46 @@
+<div>
+  <h2>Cart</h2>
+  {{#if pizzas.length}}
+    <ul>
+      {{#each pizzas}}
+        <li>
+          {{this.pizza.size}}
+          <ul>
+            <li>{{this.pizza.sauce}}</li>
+            {{#if this.pizza.parmesan}}
+              <li>Parmesan</li>
+            {{/if}}
+            {{#if this.pizza.veganParmesan}}
+              <li>Vegan Parmesan</li>
+            {{/if}}{{#if this.pizza.shreddedMozz}}
+              <li>Shredded Mozzarella</li>
+            {{/if}}
+            {{#if this.pizza.veganMozz}}
+              <li>Vegan Mozzarella</li>
+            {{/if}}{{#if this.pizza.pepperoni}}
+              <li>Pepperoni</li>
+            {{/if}}{{#if this.pizza.sausage}}
+              <li>Sausage</li>
+            {{/if}}{{#if this.pizza.bacon}}
+              <li>Bacon</li>
+            {{/if}}{{#if this.pizza.salami}}
+              <li>Salami</li>
+            {{/if}}{{#if this.pizza.greenPeppers}}
+              <li>Green Peppers</li>
+            {{/if}}{{#if this.pizza.onions}}
+              <li>Onions</li>
+            {{/if}}{{#if this.pizza.olives}}
+              <li>Olives</li>
+            {{/if}}{{#if this.pizza.mushrooms}}
+              <li>Mushrooms</li>
+            {{/if}}
+          </ul>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>
+
 <form action="getDelivery">
-    <input type="submit" value="Get Delivery"/>
+  <input type="submit" value="Get Delivery" />
 </form>

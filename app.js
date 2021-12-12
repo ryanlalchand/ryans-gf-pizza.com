@@ -60,23 +60,33 @@ app.get("/Delivery", (request, response, next) => {
   response.render("delivery.handlebars");
 });
 
-if (
-  request.session.errors.noName ||
-  request.session.errors.noAddress ||
-  request.session.errors.noCity ||
-  request.session.errors.noState ||
-  request.session.errors.noZip ||
-  request.session.errors.noPhone ||
-  request.session.errors.noCreditNum
-) {
-  response.render("order.handlebars", {
-    errors: request.session.errors,
+app.get("/PlaceOrder", (request, response, next) => {
+  if (
+    request.session.errors_array.noName ||
+    request.session.errors_array.noAddress ||
+    request.session.errors_array.noCity ||
+    request.session.errors_array.noState ||
+    request.session.errors_array.noZip ||
+    request.session.errors_array.noPhone ||
+    request.session.errors_array.noCreditNum
+  ) {
+    response.render("order.handlebars", {
+      errors_array: request.session.errors_array,
+      deliveryInfo: request.session.deliveryInfo,
+    });
+    //if there are errors, render the order page with the errors
+  } else {
+    next();
+  }
+});
+
+app.get("/PlaceOrder", (request, response, next) => {
+  response.render("summary.handlebars", {
+    errors_array: request.session.errors_array,
     deliveryInfo: request.session.deliveryInfo,
+    pizzas: request.session.pizzas,
   });
-  //if there are errors, render the order page with the errors
-} else {
-  next();
-}
+});
 
 // Default handler if request URL does not match the above
 app.use((request, response) => {
@@ -92,3 +102,4 @@ app.use((err, request, response, next) => {
 });
 
 app.listen(8085);
+console.log("Go to http://localhost:8085/");
