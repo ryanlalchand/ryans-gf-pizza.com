@@ -61,20 +61,12 @@ app.get("/getDelivery", (request, response, next) => {
 });
 
 app.get("/PlaceOrder", (request, response, next) => {
-  if (
-    request.session.errors_array.noName ||
-    request.session.errors_array.noAddress ||
-    request.session.errors_array.noCity ||
-    request.session.errors_array.noState ||
-    request.session.errors_array.noZip ||
-    request.session.errors_array.noPhone ||
-    request.session.errors_array.noCreditNum
-  ) {
+  if (request.session.deliveryErrors.error) {
     response.render("delivery.handlebars", {
-      errors_array: request.session.errors_array,
+      deliveryErrors: request.session.deliveryErrors,
       deliveryInfo: request.session.deliveryInfo,
     });
-    //if there are errors, render the order page with the errors
+    //if there are errors, render the delivery page with the errors
   } else {
     next();
   }
@@ -84,6 +76,7 @@ app.get("/PlaceOrder", (request, response, next) => {
   response.render("summary.handlebars", {
     deliveryInfo: request.session.deliveryInfo,
     pizzas: request.session.pizzas,
+    totalPrice: request.session.totalPrice,
   });
 });
 

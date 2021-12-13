@@ -1,18 +1,40 @@
 <form action="PlaceOrder">
+  {{#if deliveryErrors.noName}}
+    You must enter your name.
+  {{/if}}
+  {{#if deliveryErrors.noAddress}}
+    You must enter your address.
+  {{/if}}
+  {{#if deliveryErrors.noCity}}
+    You must enter your city.
+  {{/if}}
+  {{#if deliveryErrors.noState}}
+    You must enter your state.
+  {{/if}}
+  {{#if deliveryErrors.noZip}}
+    You must enter your zip code.
+  {{/if}}
+  {{#if deliveryErrors.noPhone}}
+    You must enter your phone number.
+  {{/if}}
+  {{#if deliveryErrors.noCreditNum}}
+    You must enter your credit card number.
+  {{/if}}
+
   Name:
-  <input type="text" name="name" /><br />
+  <input type="text" name="name" value="{{deliveryInfo.name}}" /><br />
   Address:
-  <input type="text" name="address" /><br />
+  <input type="text" name="address"  value="{{deliveryInfo.address}}"/><br />
   City:
-  <input type="text" name="city" /><br />
+  <input type="text" name="city" value="{{deliveryInfo.city}}" /><br />
   State:
-  <input type="text" name="state" /><br />
+  <input type="text" name="state"  value="{{deliveryInfo.state}}"/><br />
   Zip:
-  <input type="text" name="zip" /><br />
+  <input type="text" name="zip"  value="{{deliveryInfo.zip}}"/><br />
   Phone:
-  <input type="text" name="phone" /><br />
+  <input type="text" name="phone" value="{{deliveryInfo.phone}}" /><br />
   Credit Card Number:
-  <input type="text" name="creditNum" /><br />
+  <input type="text" name="creditNum"  value="{{deliveryInfo.creditNum}}"/><br />
 
   <label for="delivery">Delivery - $5</label>
   <input type="checkbox" name="delivery" /><br />

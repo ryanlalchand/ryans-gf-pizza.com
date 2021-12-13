@@ -19,13 +19,17 @@ module.exports = {
       onions: request.query.onions,
       olives: request.query.olives,
     };
-    
+
     if(!request.session.pizzas){
       request.session.pizzas = [];
     }
 
     request.session.pizzas.push(pizza);
 
+    if(!request.session.totalPrice){
+      request.session.totalPrice = 0;
+    }
+    
     if (pizza.size === "small") {
       request.session.totalPrice += 12;
     } else if (pizza.size === "medium") {
@@ -49,27 +53,48 @@ module.exports = {
     };
     request.session.deliveryInfo = deliveryInfo;
 
+    var deliveryErrors = {
+      noName: false,
+      noAddress: false,
+      noCity: false,
+      noState: false,
+      noZip: false,
+      noPhone: false,
+      noCreditNum: false,
+      error: false,
+    };
+
     if (deliveryInfo.name == "") {
-      request.session.errors_array.noName = true;
+      deliveryErrors.noName = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.address == "") {
-      request.session.errors_array.noAddress = true;
+      deliveryErrors.noAddress = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.city == "") {
-      request.session.errors_array.noCity = true;
+      deliveryErrors.noCity = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.state == "") {
-      request.session.errors_array.noState = true;
+      deliveryErrors.noState = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.zip == "") {
-      request.session.errors_array.noZip = true;
+      deliveryErrors.noZip = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.phone == "") {
-      request.session.errors_array.noPhone = true;
+      deliveryErrors.noPhone = true;
+      deliveryErrors.error = true;
     }
     if (deliveryInfo.creditNum == "") {
-      request.session.errors_array.noCreditNum = true;
+      deliveryErrors.noCreditNum = true;
+      deliveryErrors.error = true;
     }
+
+    request.session.deliveryErrors = deliveryErrors;
+
     next();
   },
 };
