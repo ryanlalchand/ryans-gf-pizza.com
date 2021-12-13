@@ -54,9 +54,9 @@ app.get("/AddToCart", (request, response, next) => {
 });
 
 //initialize delivery order
-app.use("/AddToCart", Order.getDelivery);
+app.use("/getDelivery", Order.getDelivery);
 
-app.get("/Delivery", (request, response, next) => {
+app.get("/getDelivery", (request, response, next) => {
   response.render("delivery.handlebars");
 });
 
@@ -70,7 +70,7 @@ app.get("/PlaceOrder", (request, response, next) => {
     request.session.errors_array.noPhone ||
     request.session.errors_array.noCreditNum
   ) {
-    response.render("order.handlebars", {
+    response.render("delivery.handlebars", {
       errors_array: request.session.errors_array,
       deliveryInfo: request.session.deliveryInfo,
     });
@@ -82,7 +82,6 @@ app.get("/PlaceOrder", (request, response, next) => {
 
 app.get("/PlaceOrder", (request, response, next) => {
   response.render("summary.handlebars", {
-    errors_array: request.session.errors_array,
     deliveryInfo: request.session.deliveryInfo,
     pizzas: request.session.pizzas,
   });

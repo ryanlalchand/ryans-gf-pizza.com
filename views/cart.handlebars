@@ -1,37 +1,37 @@
 <div>
   <h2>Cart</h2>
-  {{#if pizzas.length}}
+  {{#if pizzas}}
     <ul>
       {{#each pizzas}}
         <li>
-          {{this.pizza.size}}
+          {{this.size}}
           <ul>
-            <li>{{this.pizza.sauce}}</li>
-            {{#if this.pizza.parmesan}}
+            <li>{{this.sauce}}</li>
+            {{#if this.parmesan}}
               <li>Parmesan</li>
             {{/if}}
-            {{#if this.pizza.veganParmesan}}
+            {{#if this.veganParmesan}}
               <li>Vegan Parmesan</li>
-            {{/if}}{{#if this.pizza.shreddedMozz}}
+            {{/if}}{{#if this.shreddedMozz}}
               <li>Shredded Mozzarella</li>
             {{/if}}
-            {{#if this.pizza.veganMozz}}
+            {{#if this.veganMozz}}
               <li>Vegan Mozzarella</li>
-            {{/if}}{{#if this.pizza.pepperoni}}
+            {{/if}}{{#if this.pepperoni}}
               <li>Pepperoni</li>
-            {{/if}}{{#if this.pizza.sausage}}
+            {{/if}}{{#if this.sausage}}
               <li>Sausage</li>
-            {{/if}}{{#if this.pizza.bacon}}
+            {{/if}}{{#if this.bacon}}
               <li>Bacon</li>
-            {{/if}}{{#if this.pizza.salami}}
+            {{/if}}{{#if this.salami}}
               <li>Salami</li>
-            {{/if}}{{#if this.pizza.greenPeppers}}
+            {{/if}}{{#if this.greenPeppers}}
               <li>Green Peppers</li>
-            {{/if}}{{#if this.pizza.onions}}
+            {{/if}}{{#if this.onions}}
               <li>Onions</li>
-            {{/if}}{{#if this.pizza.olives}}
+            {{/if}}{{#if this.olives}}
               <li>Olives</li>
-            {{/if}}{{#if this.pizza.mushrooms}}
+            {{/if}}{{#if this.mushrooms}}
               <li>Mushrooms</li>
             {{/if}}
           </ul>
@@ -40,6 +40,8 @@
     </ul>
   {{/if}}
 </div>
+
+<p><a href="/Order">Add another pizza</a> </p>
 
 <form action="getDelivery">
   <input type="submit" value="Get Delivery" />

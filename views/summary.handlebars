@@ -1,0 +1,54 @@
+<div>
+  <h2>Pizzas</h2>
+  {{#if pizzas}}
+    <ul>
+      {{#each pizzas}}
+        <li>
+          {{this.size}}
+          <ul>
+            <li>{{this.sauce}}</li>
+            {{#if this.parmesan}}
+              <li>Parmesan</li>
+            {{/if}}
+            {{#if this.veganParmesan}}
+              <li>Vegan Parmesan</li>
+            {{/if}}{{#if this.shreddedMozz}}
+              <li>Shredded Mozzarella</li>
+            {{/if}}
+            {{#if this.veganMozz}}
+              <li>Vegan Mozzarella</li>
+            {{/if}}{{#if this.pepperoni}}
+              <li>Pepperoni</li>
+            {{/if}}{{#if this.sausage}}
+              <li>Sausage</li>
+            {{/if}}{{#if this.bacon}}
+              <li>Bacon</li>
+            {{/if}}{{#if this.salami}}
+              <li>Salami</li>
+            {{/if}}{{#if this.greenPeppers}}
+              <li>Green Peppers</li>
+            {{/if}}{{#if this.onions}}
+              <li>Onions</li>
+            {{/if}}{{#if this.olives}}
+              <li>Olives</li>
+            {{/if}}{{#if this.mushrooms}}
+              <li>Mushrooms</li>
+            {{/if}}
+          </ul>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>
+
+<div>
+  <h2>Delivery Information</h2>
+  {{deliveryInfo.name}}<br />
+  {{deliveryInfo.address}}<br />
+  {{deliveryInfo.city}}<br />
+  {{deliveryInfo.state}}<br />
+  {{deliveryInfo.zip}}<br />
+  {{deliveryInfo.phone}}<br />
+  {{deliveryInfo.creditNum}}<br />
+  {{deliveryInfo.totalPrice}}<br />
+</div>

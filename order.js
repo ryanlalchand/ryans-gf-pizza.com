@@ -19,17 +19,18 @@ module.exports = {
       onions: request.query.onions,
       olives: request.query.olives,
     };
+    
+    if(!request.session.pizzas){
+      request.session.pizzas = [];
+    }
 
-    var pizzas = [];
-    pizzas.push(pizza);
-    request.session.pizzas = pizzas;
-    request.session.numberOfPizzas += 1;
+    request.session.pizzas.push(pizza);
 
-    if(pizza.size==="small"){
+    if (pizza.size === "small") {
       request.session.totalPrice += 12;
-    } else if(pizza.size==="medium"){
+    } else if (pizza.size === "medium") {
       request.session.totalPrice += 16;
-    } else if(pizza.size==="large"){
+    } else if (pizza.size === "large") {
       request.session.totalPrice += 20;
     }
 
