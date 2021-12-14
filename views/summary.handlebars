@@ -1,3 +1,13 @@
+<h2>
+  Thanks for ordering!
+  <br />
+  {{#if delivery}}
+    Delivery should arrive in 30-40 minutes!
+  {{else}}
+    Pick-Up order should be ready in 15-20 minutes!
+  {{/if}}
+</h2>
+
 <div>
   <h2>Pizzas</h2>
   {{#if pizzas}}
@@ -42,13 +52,21 @@
 </div>
 
 <div>
-  <h2>Delivery Information</h2>
+  <h2>{{#if delivery}}Delivery {{else}} Pick-Up {{/if}} Information</h2>
+  Name:
   {{deliveryInfo.name}}<br />
+  Address:
   {{deliveryInfo.address}}<br />
+  City:
   {{deliveryInfo.city}}<br />
+  State:
   {{deliveryInfo.state}}<br />
+  Zip:
   {{deliveryInfo.zip}}<br />
+  Phone:
   {{deliveryInfo.phone}}<br />
+  Credit Card Number:
   {{deliveryInfo.creditNum}}<br />
-  ${{totalPrice}}<br />
+  Total: ${{totalPrice}}<br />
+
 </div>
