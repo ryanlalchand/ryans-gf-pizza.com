@@ -30,11 +30,11 @@ module.exports = {
       request.session.totalPrice = 0;
     }
     
-    if (pizza.size === "small") {
+    if (pizza.size === "Small - $12") {
       request.session.totalPrice += 12;
-    } else if (pizza.size === "medium") {
+    } else if (pizza.size === "Medium - $16") {
       request.session.totalPrice += 16;
-    } else if (pizza.size === "large") {
+    } else if (pizza.size === "Large - $20") {
       request.session.totalPrice += 20;
     }
 
