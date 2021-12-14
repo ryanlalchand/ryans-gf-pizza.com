@@ -53,6 +53,10 @@ app.get("/AddToCart", (request, response, next) => {
   response.render("cart.handlebars", { pizzas: request.session.pizzas });
 });
 
+app.get("/ViewCart", (request, response, next) => {
+  response.render("cart.handlebars", { pizzas: request.session.pizzas });
+});
+
 app.get("/getDelivery", (request, response, next) => {
   response.render("delivery.handlebars");
 });
