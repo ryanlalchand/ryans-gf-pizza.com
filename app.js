@@ -46,17 +46,19 @@ app.get("/Order", (request, response, next) => {
   response.render("order.handlebars");
 });
 
-//initialize pizza order
+//initialize pizza order upon adding to cart
 app.use("/AddToCart", Order.newPizza);
 
 app.get("/AddToCart", (request, response, next) => {
   response.render("cart.handlebars", { pizzas: request.session.pizzas });
 });
 
+//created view cart option in the event they don't want to add pizza
 app.get("/ViewCart", (request, response, next) => {
   response.render("cart.handlebars", { pizzas: request.session.pizzas });
 });
 
+//takes them to delivery form
 app.get("/getDelivery", (request, response, next) => {
   response.render("delivery.handlebars");
 });
@@ -77,10 +79,12 @@ app.get("/PlaceOrder", (request, response, next) => {
 });
 
 app.get("/PlaceOrder", (request, response, next) => {
-  if(request.query.delivery){
+  //if they get delivery, add $5 to total
+  if (request.query.delivery) {
     request.session.totalPrice += 5;
   }
 
+  //send delivery info to summary page for custom confirmation message
   response.render("summary.handlebars", {
     deliveryInfo: request.session.deliveryInfo,
     pizzas: request.session.pizzas,

@@ -20,16 +20,19 @@ module.exports = {
       olives: request.query.olives,
     };
 
-    if(!request.session.pizzas){
+    //if pizza array doesn't exist, add to session
+    if (!request.session.pizzas) {
       request.session.pizzas = [];
     }
 
+    //push new pizza
     request.session.pizzas.push(pizza);
 
-    if(!request.session.totalPrice){
+    //calculate total price after adding to session
+    if (!request.session.totalPrice) {
       request.session.totalPrice = 0;
     }
-    
+
     if (pizza.size === "Small - $12") {
       request.session.totalPrice += 12;
     } else if (pizza.size === "Medium - $16") {
@@ -42,6 +45,7 @@ module.exports = {
   },
 
   getDelivery(request, response, next) {
+    //create deliveryInfo object and add to session
     var deliveryInfo = {
       name: request.query.name,
       address: request.query.address,
@@ -51,8 +55,11 @@ module.exports = {
       phone: request.query.phone,
       creditNum: request.query.creditNum,
     };
+
     request.session.deliveryInfo = deliveryInfo;
 
+    //initialize delivery errors and set them to true if user doesn't fill out all fields
+    //add to session after all logic has been completed
     var deliveryErrors = {
       noName: false,
       noAddress: false,
